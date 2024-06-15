@@ -1,13 +1,62 @@
 import {React, useState} from 'react'
-import { FormControl,Button, FormLabel, VStack, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import { FormControl,Button, FormLabel, VStack, Input, InputGroup, InputRightElement, useToast } from '@chakra-ui/react'
 
 const Login = () => {
   const [email, setEmail] = useState();
  const [show, setShow] = useState(false);
  const [password, setPassword] = useState();
-
+ const [loading, setLoading] = useState(false);
+ const toast = useToast();
+ const history = useHistory();
  const handleClick = () => setShow(!show);
- const submitHandler = () => {}
+ 
+ const submitHandler = async() => {
+    setLoading(true);
+    if(  !email || !password ){
+        toast({
+            title: "Please enter all details",
+            status:'warning',
+            duration: 2000,
+            isClosable:true,
+            position: "bottom"
+        })
+        setLoading(false);
+        return;
+    }
+
+    try{
+        const config = {
+            headers: {
+                "Content-type" : "application/json",
+            }
+        }
+        const {data} = await axios.post("/api/user/login", {email, password}, config)
+        toast({
+            title: "Login successful",
+            status:'success',
+            duration: 2000,
+            isClosable:true,
+            position: "bottom"
+        })
+
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        setLoading(false);
+        history.push('/chats')
+        }catch(err){
+            toast({
+                title: "Error occured!!",
+                description: err.response.data.message,
+                status:'error',
+                duration: 2000,
+                isClosable:true,
+                position: "bottom"
+            })
+            setLoading(false);
+        }
+ }
+
 
   return (
     <VStack color="black" spacing='5px'>
@@ -16,7 +65,7 @@ const Login = () => {
                 <Input
                 // w='80%'
                 // m='2'
-                placeholder='Enter Your Email'
+                placeholder='youremail@xyz.com'
                 onChange={(e) => 
                     setEmail(e.target.value)
                 }
@@ -51,10 +100,11 @@ const Login = () => {
         colorScheme='blue'
         width="100%"
         marginTop={15}
-        onClick={submitHandler}>
+        onClick={submitHandler}
+        isLoading = {loading}>
             Login
         </Button>
-        <Button 
+        {/* <Button 
         colorScheme='red'
         variant='solid'
         width="100%"
@@ -64,7 +114,7 @@ const Login = () => {
           setPassword("12345")
         }}>
             Get Guest Credentials
-        </Button>
+        </Button> */}
     </VStack>
   )
 }

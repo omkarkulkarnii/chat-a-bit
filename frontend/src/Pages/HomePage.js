@@ -11,21 +11,22 @@ const HomePage = () => {
       justifyContent='center'
       padding='3'
       bg={'white'}
+      opacity={"90%"}
       w='100%'
       m="40px 0 15px 0"
       borderRadius="lg"
       borderWidth="1px"
-      borderBottom='solid 5px blue'
+      borderBottom='solid 5px lightblue'
       >
-      <Text fontSize='4xl'  fontFamily='Work sans' color='black' borderBottom='solid 5px'>chat-a-bit</Text>
+      <Text fontSize='4xl' bg={"white"} opacity={"100%"}  fontFamily='Work sans' color='black' borderBottom='solid 5px'>chat-a-bit</Text>
       </Box>
-      <Box bg='white' w='100%' p={4} borderRadius='lg' borderWidth="1px" color='black' >
-      <Tabs variant='soft-rounded' colorScheme='blue'>
-  <TabList marginBottom='0.5em'>
-    <Tab width='50%'>Login</Tab>
-    <Tab width='50%'>New User</Tab>
+      <Box bg='white' opacity={"90%"} w='100%' p={4} borderRadius='lg' borderWidth="1px" color='black' >
+      <Tabs variant='soft-rounded'  colorScheme='blue'>
+  <TabList  marginBottom='0.5em'>
+    <Tab bg="white" opacity={"100%"} width='50%'>Login</Tab>
+    <Tab bg="white" opacity={"100%"} width='50%'>New User</Tab>
   </TabList>
-  <TabPanels>
+  <TabPanels opacity={"100%"} color={'black'}>
     <TabPanel>
       <Login/>
     </TabPanel>
