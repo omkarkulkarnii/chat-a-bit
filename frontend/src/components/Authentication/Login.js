@@ -65,7 +65,7 @@ const Login = () => {
                 <Input
                 // w='80%'
                 // m='2'
-                placeholder='youremail@xyz.com'
+                placeholder='your-email@xyz.com'
                 onChange={(e) => 
                     setEmail(e.target.value)
                 }
