@@ -21,3 +21,9 @@
 
 ### Day 4:
 #### Backend: Added login and registration functionality to the frontend and created a route for successfull login
+
+### Day 5:
+#### Backend: Added multiple chat functionalities like adding member, removing member, renaming chats and more
+
+![image](https://github.com/omkarkulkarnii/chat-a-bit/assets/139356827/3527dafa-0194-4b18-bec8-59339fa7a1e7)
+
